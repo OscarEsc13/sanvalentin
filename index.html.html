@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>💌 San Valentín</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #ffe6eb;
       text-align: center;
-      margin-top: 80px;
+      margin: 0;
+      padding-top: 80px;
+      overflow: hidden;
     }
 
     h1 {
       color: #e6005c;
+      padding: 0 10px;
     }
 
     button {
@@ -20,8 +25,9 @@
       padding: 15px 30px;
       margin: 20px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
+      touch-action: manipulation;
     }
 
     #yes {
@@ -40,21 +46,37 @@
   <h1>💖 ¿Quieres ser mi San Valentín? 💖</h1>
 
   <button id="yes" onclick="acepto()">Sí 💕</button>
-  <button id="no" onmouseover="moverNo()">No 💔</button>
+  <button id="no">No 💔</button>
 
   <script>
+    const noBtn = document.getElementById("no");
+
     function moverNo() {
-      const noBtn = document.getElementById("no");
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 100);
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     }
 
+    // PC
+    noBtn.addEventListener("mouseover", moverNo);
+
+    // Celular
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moverNo();
+    });
+
     function acepto() {
       document.body.innerHTML = `
         <h1>🥰 ¡Sabía que dirías que sí! 🥰</h1>
-        <p style="font-size: 22px;">Ahora ya eres oficialmente mi San Valentín 💘</p>
+        <p style="font-size: 22px; padding: 0 15px;">
+          Ahora ya eres oficialmente mi San Valentín 💘
+        </p>
       `;
     }
   </script>
