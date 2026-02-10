@@ -48,38 +48,40 @@
   <button id="yes" onclick="acepto()">Sí 💕</button>
   <button id="no">No 💔</button>
 
-  <script>
-    const noBtn = document.getElementById("no");
+ <script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
 
-    function moverNo() {
-      const maxX = window.innerWidth - noBtn.offsetWidth;
-      const maxY = window.innerHeight - noBtn.offsetHeight;
+  function moverNo() {
+    const maxX = window.innerWidth - noBtn.offsetWidth - 10;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 10;
 
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    }
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
 
-    // PC
-    noBtn.addEventListener("mouseover", moverNo);
+  // PC
+  noBtn.addEventListener("mouseenter", moverNo);
 
-    // Celular
-    noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      moverNo();
-    });
+  // CELULAR (clave)
+  noBtn.addEventListener("touchstart", function (e) {
+    e.preventDefault();
+    moverNo();
+  }, { passive: false });
 
-    function acepto() {
-      document.body.innerHTML = `
-        <h1>🥰 ¡Sabía que dirías que sí! 🥰</h1>
-        <p style="font-size: 22px; padding: 0 15px;">
-          Ahora ya eres oficialmente mi San Valentín 💘
-        </p>
-      `;
-    }
-  </script>
+  function acepto() {
+    document.body.innerHTML = `
+      <h1>🥰 ¡Sabía que dirías que sí! 🥰</h1>
+      <p style="font-size: 22px; padding: 0 15px;">
+        Ahora ya eres oficialmente mi San Valentín 💘
+      </p>
+    `;
+  }
+</script>
+
 
 </body>
 </html>
