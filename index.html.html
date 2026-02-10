@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>💌 San Valentín</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffe6eb;
+      text-align: center;
+      margin: 0;
+      padding-top: 80px;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #e6005c;
+      padding: 0 10px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 20px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    #yes {
+      background-color: #ff4d88;
+      color: white;
+    }
+
+    #no {
+      background-color: #ccc;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💖 ¿Quieres ser mi San Valentín? 💖</h1>
+
+  <button id="yes" onclick="acepto()">Sí 💕</button>
+  <div id="no">No 💔</div>
+
+ <script>
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+
+  function moverNo() {
+    const maxX = window.innerWidth - noBtn.offsetWidth - 10;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 10;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  // PC
+  noBtn.addEventListener("mouseenter", moverNo);
+
+  // CELULAR (clave)
+  noBtn.addEventListener("touchstart", function (e) {
+    e.preventDefault();
+    moverNo();
+  }, { passive: false });
+
+  function acepto() {
+    document.body.innerHTML = `
+      <h1>🥰 ¡Sabía que dirías que sí! 🥰</h1>
+      <p style="font-size: 22px; padding: 0 15px;">
+        Ahora ya eres oficialmente mi San Valentín 💘
+      </p>
+    `;
+  }
+</script>
+
+
+</body>
+</html>
